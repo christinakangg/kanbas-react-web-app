@@ -44,6 +44,7 @@ export default function AssignmentEditor() {
             </select>
             </td>
           </tr>
+          <br />
 
           <tr>
             <td align="right" valign="top">
@@ -58,11 +59,8 @@ export default function AssignmentEditor() {
           </tr>
           <br />
 
-        <tr>
-    
-            <td align = "center" valign="top">
-                <label htmlFor="wd-submission-type">Online Entry Options</label>  
-            </td>
+        <tr>     
+            <label htmlFor="wd-submission-type">Online Entry Options</label> 
             <br />
             
             <input type="checkbox" name="text-entry" id="wd-text-entry"/>
@@ -79,7 +77,9 @@ export default function AssignmentEditor() {
 
             <input type="checkbox" name="file-upload" id="wd-file-upload"/>
             <label htmlFor="wd-file-upload">File Uploads</label><br />
+      
         </tr>
+        <br />
 
         <tr>
             <td>
@@ -116,6 +116,14 @@ export default function AssignmentEditor() {
               <input type="date" name="available-until" id="wd-available-until"/>
             </td>
         
+        </tr>
+
+        <br />
+        <tr>
+          
+            <button type = "button" name = "cancel" id= "wd-cancel">Cancel</button>
+            <button type ="button" name = "save" id="wd-save">Save</button>
+         
         </tr>
 
         </table>

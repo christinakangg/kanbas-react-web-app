@@ -68,6 +68,7 @@ Your favorite books (in no particular order)
   <li>To Kill a Mocking Bird</li>
   <li>Lord of the Flies</li>
 </ul>
+
 <div id="wd-tables">
         <h4>Table Tag</h4>
         <table border={1} width="100%">
@@ -180,32 +181,6 @@ Your favorite books (in no particular order)
     <label htmlFor="wd-text-fields-last-name">Last name:</label>
     <input type="text" id="wd-text-fields-last-name" placeholder="Doe"
       value="Wonderland" title="The last name" />
-    <h4>Other HTML field types</h4>
-
-<label htmlFor="wd-text-fields-email"> Email: </label>
-<input type="email"
-      placeholder="jdoe@somewhere.com"
-      id="wd-text-fields-email"/><br/>
-
-<label htmlFor="wd-text-fields-salary-start"> Starting salary:
-</label>
-<input type="number"
-      id="wd-text-fields-salary-start"
-      placeholder="1000"
-      value="100000"/><br/>
-
-<label htmlFor="wd-text-fields-rating"> Rating: </label>
-<input type="range" id="wd-text-fields-rating"
-      placeholder="Doe"
-      max="5"
-      value="4"/><br/>
-
-<label htmlFor="wd-text-fields-dob"> Date of birth: </label>
-<input type="date"
-      id="wd-text-fields-dob"
-      value="2000-01-21"/><br/>
-  </form>
-</div>
 
 <h5>Text boxes</h5>
 <label>Biography:</label><br/>
@@ -235,6 +210,21 @@ Your favorite books (in no particular order)
 <input type="radio" name="radio-genre" id="wd-radio-fantasy"/>
 <label htmlFor="wd-radio-fantasy">Fantasy</label>
 
+<h5 id="wd-checkboxes">Checkboxes</h5>
+<label>Favorite movie genre:</label><br/>
+
+<input type="checkbox" name="check-genre" id="wd-chkbox-comedy"/>
+<label htmlFor="wd-chkbox-comedy">Comedy</label><br/>
+
+<input type="checkbox" name="check-genre" id="wd-chkbox-drama"/>
+<label htmlFor="wd-chkbox-drama">Drama</label><br/>
+
+<input type="checkbox" name="check-genre" id="wd-chkbox-scifi"/>
+<label htmlFor="wd-chkbox-scifi">Science Fiction</label><br/>
+
+<input type="checkbox" name="check-genre" id="wd-chkbox-fantasy"/>
+<label htmlFor="wd-chkbox-fantasy">Fantasy</label>
+
 <h4 id="wd-dropdowns">Dropdowns</h4>
 
 <h5>Select one</h5>
@@ -257,6 +247,33 @@ Your favorite books (in no particular order)
    <option value="FANTASY">Fantasy</option>
 </select>
 
+<h4>Other HTML field types</h4>
+
+<label htmlFor="wd-text-fields-email"> Email: </label>
+<input type="email"
+      placeholder="jdoe@somewhere.com"
+      id="wd-text-fields-email"/><br/>
+
+<label htmlFor="wd-text-fields-salary-start"> Starting salary:
+</label>
+<input type="number"
+      id="wd-text-fields-salary-start"
+      placeholder="1000"
+      value="100000"/><br/>
+
+<label htmlFor="wd-text-fields-rating"> Rating: </label>
+<input type="range" id="wd-text-fields-rating"
+      placeholder="Doe"
+      max="5"
+      value="4"/><br/>
+
+<label htmlFor="wd-text-fields-dob"> Date of birth: </label>
+<input type="date"
+      id="wd-text-fields-dob"
+      value="2000-01-21"/><br/>
+  </form>
+</div>
+
 <h4>Anchor tag</h4>
 Please
 <a id="wd-lipsum" href="https://www.lipsum.com"> click here </a>
@@ -265,10 +282,7 @@ to get dummy text<br/>
 <a id="wd-github" href="https://github.com/christinakangg/kanbas-react-web-app.git"> Click here </a>
 to visit code repository on GitHub. <br />
 
-
  </div>
-
-      
     );
   }
   
