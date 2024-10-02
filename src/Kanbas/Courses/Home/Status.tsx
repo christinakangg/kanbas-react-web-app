@@ -10,7 +10,7 @@ import { FaBell } from "react-icons/fa";
 
 export default function CourseStatus() {
     return (
-      <div id="wd-course-status">
+      <div id="wd-course-status" style={{ width: "300px" }}>
         <h2>Course Status</h2>
 
         <button id="wd-unpublish" className="btn btn-lg btn-secondary flex-grow-1 mx-1 me-1 text-start">

@@ -1,5 +1,6 @@
 export default function AssignmentEditor() {
     return (
+      /** 
       <div id="wd-assignments-editor">
         <label htmlFor="wd-name"><b>Assignment Name</b></label><br /><br />
         <input id="wd-name" value="A1 - ENV + HTML" /><br /><br />
@@ -128,5 +129,68 @@ export default function AssignmentEditor() {
 
         </table>
       </div>
+      */
+    <div id="assignment-editor">
+    <div className="mb-3">
+    <label htmlFor="input1" className="form-label">
+      Assignment Name</label>
+    <input type="name" className="form-control"
+      id="name" placeholder="A1"/>
+    </div>
+
+    <div className="mb-3">
+  <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
+  <textarea className="form-control" id="exampleFormControlTextarea1"
+    placeholder="The assignment is available online"
+    rows={3}></textarea>
+</div>
+
+
+  <div className="mb-3">
+  <div className="d-flex align-items-center ms-auto" style={{ width:'79.7%' }}>
+    <label htmlFor="points" className=" me-3 mb-0"> 
+      Points
+    </label>
+    <input
+      type="text" className="form-control" id="points" value="100"/>
+  </div>
+  </div>
+
+  <div className="mb-3">
+  <div className="row align-items-center">
+    <label htmlFor="assignmentGroup" className="col-sm-3 col-form-label mb-0 float-end">
+      Assignment Group
+    </label>
+    <div className="col-sm-9">
+      <select id="assignmentGroup" className="form-select">
+        <option value="">ASSIGNMENTS</option>
+        <option value="group1">Group 1</option>
+        <option value="group2">Group 2</option>
+        <option value="group3">Group 3</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div className="mb-3">
+  <div className="row align-items-center">
+    <label htmlFor="assignmentGroup" className="col-sm-3 col-form-label mb-0">
+      Display Grade as
+    </label>
+    <div className="col-sm-9">
+      <select id="assignmentGroup" className="form-select">
+        <option value="">Percentage</option>
+        <option value="group1">Group 1</option>
+        <option value="group2">Group 2</option>
+        <option value="group3">Group 3</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
   );}
   
