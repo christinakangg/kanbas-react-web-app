@@ -1,4 +1,5 @@
 import { FaPlus } from "react-icons/fa6";
+import { RiProhibited2Line } from "react-icons/ri";
 import GreenCheckmark from "./GreenCheckmark";
 export default function ModulesControls() {
   return (
@@ -24,12 +25,12 @@ export default function ModulesControls() {
           </li>
             <li>
             <a id="wd-unpublish-all-modules-and-items" className="dropdown-item" href="#">
-              <GreenCheckmark />
+            <RiProhibited2Line className="fs-5" />
               Unpublish all modules and items</a>
           </li>
           <li>
             <a id="wd-unpublish-modules-only" className="dropdown-item" href="#">
-              <GreenCheckmark />
+            <RiProhibited2Line className="fs-5" />
               Unpublish modules only</a>
           </li>
         </ul>

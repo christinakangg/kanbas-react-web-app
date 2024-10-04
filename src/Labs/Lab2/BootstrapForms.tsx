@@ -9,6 +9,12 @@ export default function BootstrapForms(){
       id="input1" placeholder="name@example.com"/>
   </div>
   <div className="mb-3">
+    <label htmlFor="input2" className="form-label">
+      Date</label>
+    <input type="date" className="form-control"
+      id="input2" placeholder="2024-10-02"/>
+  </div>
+  <div className="mb-3">
     <label htmlFor="textarea1" className="form-label">
       Example textarea</label>
     <textarea className="form-control" id="textarea1" 
@@ -21,6 +27,8 @@ export default function BootstrapForms(){
      <option value="1">One</option>
      <option value="2">Two</option>
      <option value="3">Three</option>
+     <option value="4">Four</option>
+     <option value="5">Five</option>
   </select>
 </div>
 <div id="wd-css-styling-switches">
@@ -136,7 +144,14 @@ export default function BootstrapForms(){
           <input className="form-check-input" type="radio"
             name="gridRadios" id="r5" value="option3" disabled />
           <label className="form-check-label" htmlFor="r5">
-            Third disabled radio </label> </div>
+            Third disabled radio </label> 
+            <input className="form-check-input" type="radio"
+            name="gridRadios" id="r6" value="option4" disabled /></div>
+            <div className="form-check disabled">
+            <input className="form-check-input" type="radio"
+            name="gridRadios" id="r6" value="option4" disabled />
+          <label className="form-check-label" htmlFor="r6">
+            Fourth disabled radio </label></div>
       </div>
     </fieldset>
     <div className="row mb-3">

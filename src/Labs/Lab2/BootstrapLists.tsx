@@ -7,7 +7,10 @@ export default function BootstrapLists(){
     <li className="list-group-item">Terminator</li>
     <li className="list-group-item">Blade Runner</li>
     <li className="list-group-item">Lord of the Ring</li>
+    <li className="list-group-item">Avatar</li>
+    <li className="list-group-item">Harry Potter</li>
     <li className="list-group-item disabled">Star Wars</li>
+    <li className="list-group-item disabled">Titanic</li>
   </ul>
   <div id="wd-css-hyperlink-list">
   <h3>Favorite books</h3>
@@ -24,9 +27,18 @@ export default function BootstrapLists(){
     <a href="https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey_(novel)" 
        className="list-group-item list-group-item-action">
        2001 A Space Odyssey</a>
+    <a href="https://en.wikipedia.org/wiki/The_Hobbit" 
+       className="list-group-item list-group-item-action">
+       The Hobbit</a>
+    <a href="https://en.wikipedia.org/wiki/The_Great_Gatsby" 
+       className="list-group-item list-group-item-action">
+       The Great Gatsby</a>
     <a href="https://en.wikipedia.org/wiki/Ender%27s_Game" 
        className="list-group-item list-group-item-action disabled">
        Ender's Game</a>
+    <a href="https://en.wikipedia.org/wiki/Pride_and_Prejudice" 
+       className="list-group-item list-group-item-action disabled">
+       Pride and Prejudice</a>
   </div>
 </div>
 </div>

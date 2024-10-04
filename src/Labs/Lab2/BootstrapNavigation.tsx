@@ -13,6 +13,9 @@ export default function BootstrapNavigation(){
         <a className="nav-link" href="#">Link</a>
     </li>
     <li className="nav-item">
+        <a className="nav-link" href="#/Kanbas">Kanbas</a>
+    </li>
+    <li className="nav-item">
         <a className="nav-link disabled" href="#">Disabled</a>
     </li>
   </ul>
@@ -33,6 +36,23 @@ export default function BootstrapNavigation(){
       </p>
       <a href="#" className="btn btn-primary">
         Boldly Go
+      </a>
+    </div>
+  </div>
+  <br />
+  <div className="card"
+       style={{ width: "18rem" }}>
+    <img src="images/cat.jpg"
+         className="card-img-top" />
+    <div className="card-body">
+      <h5 className="card-title">
+          Cat
+      </h5>
+      <p className="card-text">
+        Here is a picture of a cat.
+      </p>
+      <a href="#" className="btn btn-primary">
+        Pet the cat!
       </a>
     </div>
   </div>

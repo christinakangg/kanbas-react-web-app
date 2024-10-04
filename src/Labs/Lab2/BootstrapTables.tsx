@@ -10,9 +10,11 @@ export default function BootstrapTables(){
       <tr className="table-warning"><td>Q1</td><td>HTML</td><td>2/3/21</td><td>85</td></tr>
       <tr className="table-danger"><td>Q2</td><td>CSS</td><td>2/10/21</td><td>90</td></tr>
       <tr className="table-primary"><td>Q3</td><td>JavaScript</td><td>2/17/21</td><td>90</td></tr>
+      <tr className="table-active"><td>Q4</td><td>Bootstrap & Flex</td><td>2/24/21</td><td>70</td></tr>
+      <tr className="table-info"><td>Q5</td><td>Routing</td><td>3/1/21</td><td>85</td></tr>
     </tbody>
     <tfoot>
-      <tr className="table-success"><td colSpan={3}>Average</td><td>90</td></tr>
+      <tr className="table-success"><td colSpan={3}>Average</td><td>83</td></tr>
     </tfoot>
   </table>
   <div id="wd-css-responsive-tables">
@@ -36,7 +38,5 @@ export default function BootstrapTables(){
   </div>
 </div>
 </div>
-
-
     )
 }
