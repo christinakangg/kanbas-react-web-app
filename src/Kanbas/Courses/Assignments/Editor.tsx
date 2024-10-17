@@ -1,17 +1,27 @@
+import { Link, useParams } from "react-router-dom";
+import * as db from "../../Database";
+
 export default function AssignmentEditor() {
-    return (
-    <div id="assignment-editor">
+    const { cid, aid } = useParams();
+    const assignment = db.assignments.find((assignment) => assignment._id === aid); 
+
+    return ( 
+    <div id="assignment-editor">   
     <div className="mb-4">
+       
     <label htmlFor="assignment-name" className="form-label col-form-label">
-      Assignment Name</label>
+      Assignment Name</label>     
+
     <input type="name" className="form-control"
-      id="assignment-name" placeholder="A1"/>
+      id="assignment-name" placeholder={assignment?.title}/>     
     </div>
 
     <div className="mb-4">
     <textarea className="form-control" id="text-area"
     placeholder={'\nThe assignment is available online\n\nSubmit a link to the landing page of your Web application running on Netlify.\n\nThe landing page should include the following:\n\nYour full name and section\nLinks to each of the lab assignments\nLink to the Kanbas application\nLinks to all relevant source code repositories\n\nThe Kanbas application should include a link to navigate back to the landing page.'}
-    rows={13}></textarea>
+    rows={13}>
+      {assignment?.description}
+    </textarea>
     </div>
 
     <div className="mb-3">
@@ -20,7 +30,7 @@ export default function AssignmentEditor() {
       Points
     </label>
     <div className="col-sm-9">
-      <input type="text" className="form-control" id="points" value="100" />
+      <input type="text" className="form-control" id="points" value={assignment?.points} />
     </div>
   </div> 
   </div> 
@@ -138,7 +148,7 @@ export default function AssignmentEditor() {
         Due
       </label>
       <div className="mb-3">  
-        <input type="date" className="form-control" id="due-date" defaultValue="2024/05/13" />
+        <input type="text" className="form-control" id="due-date" defaultValue={assignment?.due_date} />
       </div>
 
       <div className="mb-3">
@@ -146,7 +156,7 @@ export default function AssignmentEditor() {
         <div className="col-sm-6">
           <label htmlFor="available-from" className="form-label fw-bold fs-5">
           Available From</label>
-          <input type="date" className="form-control" id="available-from" defaultValue="2024-05-06" />
+          <input type="text" className="form-control" id="available-from" defaultValue={assignment?.available_date}  />
         </div>
         <div className="col-sm-6">
           <label htmlFor="until-date" className="form-label fw-bold fs-5">
@@ -163,15 +173,17 @@ export default function AssignmentEditor() {
 
 <div className="border border-1 "></div>
 <div className="d-flex justify-content-end p-3">
+  <Link to={`/Kanbas/Courses/${cid}/Assignments`}>
       <button type="button" className="btn btn-secondary me-2">
         Cancel
       </button>
       <button type="button" className="btn btn-danger">
         Save
       </button>
+    </Link>
     </div>
+    
 </div>
-
 
   );}
   
