@@ -14,14 +14,18 @@ export default function Modules() {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: any) => state.modulesReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch()
   return (
-      
+
       <ul id="wd-modules" className="list-group rounded-0">
+        {currentUser.role === "FACULTY" && (
          <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={() => {
           dispatch(addModule({ name: moduleName, course: cid }));
           setModuleName("");
         }} />
+      )}
+
         {modules
           .filter((module: any) => module.course === cid)
           .map((module: any) => (
@@ -40,15 +44,19 @@ export default function Modules() {
                       defaultValue={module.name}/>
             )}
             <WeekEllipsisVertical /> 
+
+            {currentUser.role === "FACULTY" && (
             <ModuleControlButtons  
             moduleId={module._id}
             deleteModule={(moduleId) => {
               dispatch(deleteModule(moduleId));
             }}
             editModule={(moduleId) => dispatch(editModule(moduleId))} />
+          )}
+
             <WeekGreenCheckmark />
             </div>
-            {module.lessons && (
+              {module.lessons && (
               <ul className="wd-lessons list-group rounded-0">
                 {module.lessons.map((lesson: any) => (
                   <li className="wd-lesson list-group-item p-3 ps-1">
