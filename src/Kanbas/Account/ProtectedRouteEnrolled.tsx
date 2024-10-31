@@ -7,6 +7,10 @@ export default function ProtectedRouteEnrolled({ children }: {children: any}) {
   const enrollments = useSelector((state: any) => state.enrollmentReducer.enrollments);
   const { cid } = useParams(); 
 
+  // faculty has access to all courses
+  if (currentUser.role == "FACULTY"){
+    return children;
+  }
   // checks if the user is enrolled to the course 
   const checkEnrollment = enrollments.some(
     (enrollment: { user: any; course: any}) =>

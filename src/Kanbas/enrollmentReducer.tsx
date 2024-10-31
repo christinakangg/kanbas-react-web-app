@@ -14,7 +14,7 @@ const enrollmentSlice = createSlice({
         enrollmentStatus(state, action) {
             const { userId, courseId } = action.payload;
 
-            // checks if the current user is already enrolled int eh course
+            // checks if the current user is already enrolled in the course
             const checkEnrollment = state.enrollments.some(
                 (enrollment) => enrollment.user === userId && enrollment.course === courseId
             );
@@ -27,10 +27,10 @@ const enrollmentSlice = createSlice({
                 );
             }
             else {
-                state.enrollments.push({_id: Date.now().toString(), user: userId, course: courseId });
+                state.enrollments.push({_id: new Date().getTime.toString(), user: userId, course: courseId });
             }
 
-            // saved to local storage so choices still persists
+            // saved to local storage so choices still persist
             localStorage.setItem('enrollments', JSON.stringify(state.enrollments))
 
         }

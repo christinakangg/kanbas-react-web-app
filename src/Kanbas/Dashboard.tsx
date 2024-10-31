@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { enrollmentStatus } from "./enrollmentReducer"; 
@@ -18,13 +18,18 @@ export default function Dashboard({
   deleteCourse: (courseId: any) => void;
   updateCourse: () => void;
 }) {
+
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const enrollments = useSelector((state:any) => state.enrollmentReducer.enrollments);
-  const [showAllCourses, setShowAllCourses] = useState(false);
+  // toggle between showing all courses and only enrolled courses 
+  // shows only enrolled courses first
+  const [showCourses, setShowCourses] = useState(false);
 
-  const handleToggleEnrollments = () => {
-    setShowAllCourses(!showAllCourses);
+  // handles showing all courses or only enrolled courses
+  const toggleCourses = () => {
+    // switch between all or enrolled courses
+    setShowCourses(!showCourses);
   };
 
   return (
@@ -56,8 +61,10 @@ export default function Dashboard({
       )}
 
       {currentUser.role === "STUDENT" && (
-        <button className="btn btn-primary mb-3" onClick={handleToggleEnrollments}>
-          {showAllCourses ? "Show Enrolled Courses" : "Show All Courses"}
+        // switch between all or enrolled courses when the button is clicked 
+        <button className="btn btn-primary mb-2" 
+        onClick={toggleCourses}>
+          {showCourses ? "Enrolled Courses" : "All Courses"}
         </button>
       )}
 
@@ -69,13 +76,22 @@ export default function Dashboard({
             .filter((course) => {
 
               if (currentUser.role === "STUDENT") {
-                if (showAllCourses) return true; // Show all courses if toggled
+
+                // return all courses if showCourses is true 
+                if (showCourses) {
+                  return true;
+                }
+                else {
+                  // checks if the user is enrolled in the course
                 return enrollments.some(
                   (enrollment: { user: any; course: any }) =>
                     enrollment.user === currentUser._id && enrollment.course === course._id
-                );
+                )};
               }
-              return true; // Show all courses for faculty
+              // shows all courses for roles other than student 
+              else {
+              return true;
+              }
             })
 
             .map((course) => {
@@ -100,31 +116,30 @@ export default function Dashboard({
                         <button className="btn btn-primary">Go</button>
 
                         {currentUser.role === "STUDENT" && (
-                          <>
-                            {isEnrolled ? (
+                            // if the user is enrolled, show the unenroll button 
+                            isEnrolled ? (
                               <button
                                 onClick={(event) => {
-                                  event.preventDefault(); // Prevent navigation
-            
+                                  // prevent the user from clicking on the course itself 
+                                  event.preventDefault();
+                                  // use the enrollmentStatus action using the user and course id and unenrolls the user from the course 
                                   dispatch(enrollmentStatus({ userId: currentUser._id, courseId: course._id }));
                                 }}
                                 className="btn btn-danger float-end"
+                              > Unenroll
+                              </button>) 
+                              // otherwise, show the enroll button 
+                              : (<button
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  dispatch(enrollmentStatus({ userId: currentUser._id, courseId: course._id }));
+                                }}
+                                className="btn btn-success float-end"
                               >
-                                Unenroll
-                              </button>
-                            ) : (
-                              <button
-                              onClick={(event) => {
-
-                                dispatch(enrollmentStatus({ userId: currentUser._id, courseId: course._id }));
-                              }}
-                              className="btn btn-success float-end"
-                            >
                                 Enroll
                               </button>
-                            )}
-                          </>
-                        )}
+                            )
+                          )}
 
                         {currentUser.role === "FACULTY" && (
                           <>
