@@ -122,7 +122,7 @@ export default function Dashboard({
                                 onClick={(event) => {
                                   // prevent the user from clicking on the course itself 
                                   event.preventDefault();
-                                  // use the enrollmentStatus action using the user and course id and unenrolls the user from the course 
+                                  // use the enrollmentStatus action using the user and 
                                   dispatch(enrollmentStatus({ userId: currentUser._id, courseId: course._id }));
                                 }}
                                 className="btn btn-danger float-end"
