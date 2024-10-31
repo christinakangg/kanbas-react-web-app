@@ -30,6 +30,7 @@ export default function AssignmentEditor() {
       }}, [assignment]);
 
     const addOrEditAssignment = () => {
+      // creating a new assignment 
       if (aid === "new"){
         const newAssignment = {
           _id: new Date().getTime().toString(), 
@@ -44,6 +45,7 @@ export default function AssignmentEditor() {
         dispatch(addAssignment(newAssignment))
       }
       else {
+        // editing an existing assignment
         const editedAssignment = {
           _id: aid, 
           title,
