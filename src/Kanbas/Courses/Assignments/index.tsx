@@ -28,7 +28,7 @@ export default function Assignments() {
           </div>
           {currentUser.role === "FACULTY" && (
           <AssignmentButtons assignmentId={assignment._id} deleteAssignment={(assignmentId) => {dispatch(deleteAssignment(assignmentId))}} />
-        
+      
           )}
         </div>
 
@@ -38,11 +38,12 @@ export default function Assignments() {
         <BsGripVertical className="me-2 fs-3" />
         <GiNotebook className="me-4 fs-3"/>
         <div>
+        {currentUser.role === "FACULTY" && (
         <Link to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}>
         <a className="text-bold fs-3"> 
           {assignment.title}       
         </a>
-        </Link>
+        </Link>)}
         <div className="mb-1 fs-6">
           <span className="text-danger">
             Multiple Modules<b></b>
