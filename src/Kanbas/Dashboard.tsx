@@ -1,6 +1,6 @@
-import React from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as db from "./Database";
 
 export default function Dashboard({
@@ -13,8 +13,10 @@ export default function Dashboard({
   deleteCourse: (courseId: any) => void;
   updateCourse: () => void;
 }) {
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = db;
+  const enrollments = db.enrollments;
+
 
   return (
     <div id="wd-dashboard">
@@ -53,6 +55,8 @@ export default function Dashboard({
         </>
       )}
 
+
+
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
       <hr />
       <div id="wd-dashboard-courses" className="row">
@@ -60,7 +64,7 @@ export default function Dashboard({
           {courses
             .filter((course) =>
               enrollments.some(
-                (enrollment) =>
+                (enrollment: { user: any; course: any; }) =>
                   enrollment.user === currentUser._id &&
                   enrollment.course === course._id
               )
