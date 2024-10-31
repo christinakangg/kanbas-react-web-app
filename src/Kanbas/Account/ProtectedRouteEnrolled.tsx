@@ -11,6 +11,7 @@ export default function ProtectedRouteEnrolled({ children }: {children: any}) {
   if (currentUser.role === "FACULTY"){
     return children;
   }
+
   // checks if the user is enrolled to the course 
   const checkEnrollment = enrollments.some(
     (enrollment: { user: any; course: any}) =>
