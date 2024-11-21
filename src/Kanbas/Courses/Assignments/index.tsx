@@ -5,19 +5,35 @@ import { GoTriangleDown } from "react-icons/go";
 import AssignmentButtons from "./AssignmentButtons";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAssignment } from "./reducer";
+import { deleteAssignment, setAssignments } from "./reducer";
+import { useEffect } from "react";
+import * as assignmentsClient from "./client";
+import * as coursesClient from "../client"
+
 export default function Assignments() {
   const { cid } = useParams();
   const dispatch = useDispatch();
   const assignments = useSelector((state: any) => state.assignmentReducer.assignments);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+
   
-  
+  const removeAssignment = async (assignmentId: string) => {
+    await assignmentsClient.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
+  }
+
+  const fetchAssignments = async () => {
+    const assignments = await coursesClient.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+
     return (
 
       <ul id="wd-assignments">
         {assignments
-        .filter((assignment: any) => assignment.course === cid)
           .map((assignment: any) => (
         <li className = "wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
@@ -27,7 +43,7 @@ export default function Assignments() {
             <span className="fs-3">ASSIGNMENTS</span>
           </div>
           {currentUser.role === "FACULTY" && (
-          <AssignmentButtons assignmentId={assignment._id} deleteAssignment={(assignmentId) => {dispatch(deleteAssignment(assignmentId))}} />
+          <AssignmentButtons assignmentId={assignment._id} deleteAssignment={(assignmentId) => removeAssignment(assignmentId)}/>
       
           )}
         </div>
