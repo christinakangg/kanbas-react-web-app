@@ -2,6 +2,8 @@ import { useNavigate, Link, useParams, Navigate } from "react-router-dom";
 import {  useState, useEffect } from "react";
 import { useDispatch, useSelector, } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
+import * as assignmentsClient from "./client";
+import * as modulesClient from "../client"
 
 export default function AssignmentEditor() {
     const { cid, aid } = useParams();
@@ -17,6 +19,18 @@ export default function AssignmentEditor() {
     const[due_date, setDue_date] = useState("");
     const[points, setPoints] = useState("");
     const[description, setDescription] = useState("");
+
+    const createAssignment = async ()=> {
+      if (!cid) return; 
+      const newAssignment = {name: title, course: cid};
+      const assignment = await modulesClient.createAssignmentForCourse(cid, newAssignment);
+      dispatch(addAssignment(assignment));
+    };
+
+    const saveAssignment = async (assignment: any) => {
+      await assignmentsClient.updateAssignment(assignment);
+      dispatch(updateAssignment(assignment));
+    }
 
     // look up if assignment exists, if it does then populate fields with assignment details
     useEffect(() => {
@@ -42,7 +56,7 @@ export default function AssignmentEditor() {
           points,
           description,
         };
-        dispatch(addAssignment(newAssignment))
+        dispatch(addAssignment(createAssignment))
       }
       else {
         // editing an existing assignment
@@ -56,7 +70,7 @@ export default function AssignmentEditor() {
           points,
           description,
         };
-        dispatch(updateAssignment(editedAssignment))
+        dispatch(updateAssignment(saveAssignment))
       }
       navigateBack(`/Kanbas/Courses/${cid}/Assignments`);
     };
