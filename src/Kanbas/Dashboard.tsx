@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { enrollmentStatus } from "./enrollmentReducer"; 
+import * as coursesClient from "./Courses/client"
+import * as enrollmentsClient from "./enrollmentsClient"
 
 export default function Dashboard({
   courses,
@@ -31,6 +33,26 @@ export default function Dashboard({
     // switch between all or enrolled courses
     setShowCourses(!showCourses);
   };
+
+  const enrollCourses = async (courseId: string) => {
+    await enrollmentsClient.enrollInCourse(currentUser._id, courseId);
+    dispatch(enrollmentStatus({ userId: currentUser._id, courseId }));
+  }
+
+  const unenrollCourses = async (courseId: string) => {
+    await enrollmentsClient.unenrollInCourse(currentUser._id, courseId);
+    dispatch(enrollmentStatus({ userId: currentUser._id, courseId }));
+  }
+
+  const [allCourses, setAllCourses] = useState<any[]>([]);
+  const fetchCourses = async () => {
+    const courses = await coursesClient.fetchAllCourses();
+    setAllCourses(courses);
+  };
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
 
   return (
     <div id="wd-dashboard">
@@ -68,11 +90,11 @@ export default function Dashboard({
         </button>
       )}
 
-      <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
+      <h2 id="wd-dashboard-published">Published Courses ({allCourses.length})</h2>
       <hr />
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
-          {courses
+          {allCourses
             .filter((course) => {
 
               if (currentUser.role === "STUDENT") {
@@ -118,24 +140,18 @@ export default function Dashboard({
                         {currentUser.role === "STUDENT" && (
                             // if the user is enrolled, show the unenroll button 
                             isEnrolled ? (
-                              <button
-                                onClick={(event) => {
-                                  // prevent the user from clicking on the course itself 
-                                  event.preventDefault();
-                                  // use the enrollmentStatus action using the user and 
-                                  dispatch(enrollmentStatus({ userId: currentUser._id, courseId: course._id }));
-                                }}
-                                className="btn btn-danger float-end"
-                              > Unenroll
+                              // prevent going to the course page when clicking on button
+                              <button className="btn btn-danger" onClick={(event) => {
+                                event.preventDefault(); 
+                                unenrollCourses(course._id);
+                              }}>
+                               Unenroll
                               </button>) 
                               // otherwise, show the enroll button 
-                              : (<button
-                                onClick={(event) => {
-                                  event.preventDefault();
-                                  dispatch(enrollmentStatus({ userId: currentUser._id, courseId: course._id }));
-                                }}
-                                className="btn btn-success float-end"
-                              >
+                              : (<button className="btn btn-success" onClick={(event) => {
+                                event.preventDefault();
+                                enrollCourses(course._id);
+                              }}>
                                 Enroll
                               </button>
                             )

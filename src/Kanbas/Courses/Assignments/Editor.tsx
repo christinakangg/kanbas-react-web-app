@@ -3,7 +3,7 @@ import {  useState, useEffect } from "react";
 import { useDispatch, useSelector, } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import * as assignmentsClient from "./client";
-import * as modulesClient from "../client"
+import * as coursesClient from "../client"
 
 export default function AssignmentEditor() {
     const { cid, aid } = useParams();
@@ -20,17 +20,17 @@ export default function AssignmentEditor() {
     const[points, setPoints] = useState("");
     const[description, setDescription] = useState("");
 
-    const createAssignment = async ()=> {
+    const createAssignment = async (newAssignment: any) => {
       if (!cid) return; 
-      const newAssignment = {name: title, course: cid};
-      const assignment = await modulesClient.createAssignmentForCourse(cid, newAssignment);
-      dispatch(addAssignment(assignment));
+      const createdAssignment = await coursesClient.createAssignmentForCourse(cid, newAssignment);
+      dispatch(addAssignment(createdAssignment));
+
     };
 
     const saveAssignment = async (assignment: any) => {
       await assignmentsClient.updateAssignment(assignment);
       dispatch(updateAssignment(assignment));
-    }
+    };
 
     // look up if assignment exists, if it does then populate fields with assignment details
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function AssignmentEditor() {
           setDescription(assignment.description);
       }}, [assignment]);
 
-    const addOrEditAssignment = () => {
+    const addOrEditAssignment = async () => {
       // creating a new assignment 
       if (aid === "new"){
         const newAssignment = {
@@ -56,7 +56,7 @@ export default function AssignmentEditor() {
           points,
           description,
         };
-        dispatch(addAssignment(createAssignment))
+        await createAssignment(newAssignment);
       }
       else {
         // editing an existing assignment
@@ -70,7 +70,7 @@ export default function AssignmentEditor() {
           points,
           description,
         };
-        dispatch(updateAssignment(saveAssignment))
+        await saveAssignment(editedAssignment);
       }
       navigateBack(`/Kanbas/Courses/${cid}/Assignments`);
     };

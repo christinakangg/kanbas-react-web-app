@@ -37,12 +37,17 @@ export const findAssignmentsForCourse = async (courseId: string) => {
 };
 
 export const createAssignmentForCourse = async (courseId: string, assignment: any) => {
-  const response = await axios.post(
-    `${COURSES_API}/${courseId}/assignments`,
-    assignment
-  );
-  return response.data;
-}
+  try {
+    const response = await axios.post(
+      `${COURSES_API}/${courseId}/assignments`, 
+      assignment
+    );
+    return response.data; // Return the created assignment from the backend
+  } catch (error) {
+    console.error("Error creating assignment:", error);
+    throw error;
+  }
+};
 
 
 
