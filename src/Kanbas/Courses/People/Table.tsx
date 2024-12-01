@@ -9,7 +9,7 @@ export default function PeopleTable({ users = [] }: { users?: any[] }) {
       <PeopleDetails />
       <table className="table table-striped">
         <thead>
-          <tr><th>Name</th><th>Login ID</th><th>Section</th><th>Role</th><th>Last Activity</th><th>Total Activity</th></tr>
+          <tr><th>Name</th><th>Login ID</th><th>Section</th><th>Role</th><th>Last Activity</th><th>Total Activity</th><th>Email</th></tr>
         </thead>
         <tbody>
         {users
@@ -27,6 +27,7 @@ export default function PeopleTable({ users = [] }: { users?: any[] }) {
         <td className="wd-role">{user.role}</td>
         <td className="wd-last-activity">{user.lastActivity}</td>
         <td className="wd-total-activity">{user.totalActivity}</td>
+        <td className="wd-email">{user.email}</td>
       </tr>
     ))}
       </tbody>
