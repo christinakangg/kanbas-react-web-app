@@ -8,7 +8,7 @@ export default function ProtectedRouteEnrolled({ children }: {children: any}) {
   const { cid } = useParams(); 
 
   // faculty has access to all courses
-  if (currentUser.role === "FACULTY"){
+  if (currentUser.role === "FACULTY" || currentUser.role === "ADMIN"){
     return children;
   }
 
