@@ -7,13 +7,6 @@ import { FaTrash } from "react-icons/fa";
 
 export default function AssignmentButtons({ assignmentId, deleteAssignment }: { assignmentId: string; deleteAssignment: (assignmentId: string) => void; }) {
   const { cid } = useParams();
-  const assignment = db.assignments.find((assignment) => assignment.course === cid);
-
-  // if no assignment exists, return null
-  if (!assignment){
-    return null;
-  }
-
   return (
           <span className="d-flex align-items-center">
             <span className="px-3 py-2 me-1 bg-secondary rounded-pill border border-dark">

@@ -19,9 +19,10 @@ export default function ProtectedRouteEnrolled({ children }: {children: any}) {
   );
 
     // redirect to dashboard when clicking on an unenrolled course
+    /** 
     if (!checkEnrollment) {
       return <Navigate to="/Kanbas/Dashboard" />;
     }
-    
+    */
   return children;
 }

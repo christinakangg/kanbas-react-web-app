@@ -2,9 +2,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { LiaBookSolid, LiaCogSolid } from "react-icons/lia";
 import { FaInbox, FaRegCircleUser } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
-import { RiInbox2Fill } from "react-icons/ri";
 import { IoCalendarOutline, IoSettingsOutline } from "react-icons/io5";
-import { CiCalendar } from "react-icons/ci";
 export default function KanbasNavigation() {
   const { pathname } = useLocation();
   const links = [

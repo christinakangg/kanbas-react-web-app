@@ -42,7 +42,7 @@ export default function Assignments() {
             <GoTriangleDown className="me-2" />
             <span className="fs-3">ASSIGNMENTS</span>
           </div>
-          {currentUser.role === "FACULTY" && (
+          {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && (
           <AssignmentButtons assignmentId={assignment._id} deleteAssignment={(assignmentId) => removeAssignment(assignmentId)}/>
       
           )}

@@ -11,7 +11,7 @@ export default function Home() {
     <Modules />
   </div>
   <div className="d-none d-md-block">
-  {currentUser.role === "FACULTY" && <CourseStatus />}
+  {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && <CourseStatus />}
   </div>
 </div>
   );

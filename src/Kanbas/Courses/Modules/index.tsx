@@ -41,11 +41,11 @@ export default function Modules() {
   };
   useEffect(() => {
     fetchModules();
-  }, []);
+  }, []); 
   return (
 
       <ul id="wd-modules" className="list-group rounded-0">
-        {currentUser.role === "FACULTY" && (
+        {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && (
          <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={createModuleForCourse}  />
       )}
 
@@ -68,7 +68,7 @@ export default function Modules() {
             )}
             <WeekEllipsisVertical /> 
 
-            {currentUser.role === "FACULTY" && (
+            {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && (
             <ModuleControlButtons  
             moduleId={module._id}
             deleteModule={(moduleId) => removeModule(moduleId)
